@@ -4,17 +4,23 @@ function getComputerChoice(){
     return choises[parseInt(randomNumber)]
 }
 
-
+/*
 function playerSelection(){
     let playerChoice = prompt("Make your choice:");
     return playerChoice.toLowerCase()
 }
+*/
 
-
-function playRound(){
-    let computerChoice = getComputerChoice();
-    let playerChoice = playerSelection();
+function playRound(playerSelection, computerSelection){
+    if (computerSelection == "rock"){
+        return "Tie"
+    }else if (computerSelection == "paper"){
+        return `You lose! ${computerSelection} beats ${playerSelection}`
+    }else{
+        return `You win! ${playerSelection} beats ${computerSelection}`
+    }
 }
 
-
-playRound();
+const playerSelection = "rock";
+const computerSelection = getComputerChoice();
+const result = playRound(playerSelection, computerSelection);
