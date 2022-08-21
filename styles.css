@@ -1,0 +1,39 @@
+#container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: wrap column;
+}
+
+#borders{
+    border:1px solid black; 
+    border-radius:8px; 
+    padding:8px;
+}
+
+button{
+    padding: 8px;
+    width: 128px;
+    border-radius: 8px;
+    color:white;
+    background-color: rgb(11, 123, 242);
+    border:none;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: rgb(4, 93, 189);
+    transition: 0.4s;
+}
+
+
+div{
+    margin: 4px;
+}
+
+
+.playerChoises{
+    display: flex;
+    gap: 24px;
+    margin: 24px;
+}
