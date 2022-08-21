@@ -9,27 +9,36 @@ function playRound(playerSelection, computerSelection){
     switch (playerSelection){
         case "paper":
             if (computerSelection == "paper"){
-                return "Tie"
+                displayResult.textContent = "Tie";
+                return "tie"
             }else if (computerSelection == "scissors"){
-                return `You lose! ${computerSelection} beats ${playerSelection}`
+                displayResult.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+                return 'lose'
             }else{
-                return `You win! ${playerSelection} beats ${computerSelection}`
+                displayResult.textContent = `You win! ${playerSelection} beats ${computerSelection}`;
+                return "win"
             }
         case "rock":
             if (computerSelection == "rock"){
-                return "Tie"
+                displayResult.textContent = "Tie";
+                return "tie"
             }else if (computerSelection == "paper"){
-                return `You lose! ${computerSelection} beats ${playerSelection}`
+                displayResult.textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
+                return "lose"
             }else{
-                return `You win! ${playerSelection} beats ${computerSelection}`
+                displayResult.textContent = `You win! ${playerSelection} beats ${computerSelection}`
+                return "win";
             }
         case "scissors":
             if (computerSelection == "rock"){
-                return `You lose! ${computerSelection} beats ${playerSelection}`
+                displayResult.textContent =`You lose! ${computerSelection} beats ${playerSelection}`;
+                return "lose"
             }else if (computerSelection == "paper"){
-                return `You win! ${playerSelection} beats ${computerSelection}`
+                displayResult.textContent =`You win! ${playerSelection} beats ${computerSelection}`;
+                return "win"
             }else{
-                return `Tie`
+                displayResult.textContent = "Tie";
+                return `tie`
             }
     }
 }
@@ -37,17 +46,34 @@ function playRound(playerSelection, computerSelection){
 
 function startGame(){
     let result = playRound(playerSelection, getComputerSelection());
-    console.log(result)
+    if (result === 'win') playerScore++;
+    if (result === 'lose') computerScore++;
+
+    displayScore.textContent = `Player: ${playerScore} \nComputer: ${computerScore} `;
+    if (playerScore === 5 || computerScore === 5){
+        result = "The game is over!"
+        displayResult.textContent = result;
+        playerScore = 0;
+        computerScore = 0;
+    }
 }
 
 
 const buttons = document.querySelectorAll("button");
 const container = document.querySelector("#container");
-const result = document.createElement("div");
+const displayResult = document.createElement("div");
+const displayScore = document.createElement("div");
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
 let playerSelection = '';
+let playerScore = 0;
+let computerScore = 0;
+
+container.appendChild(displayResult);
+container.appendChild(displayScore);
+
+displayScore.textContent = `Player: ${playerScore} \nComputer: ${computerScore} `;
 
 
 rock.addEventListener('click', () => {
@@ -62,10 +88,9 @@ scissors.addEventListener('click', () => {
     playerSelection = 'scissors';
 });
 
-for(button of buttons){
-    button.addEventListener('click', startGame);
-}
+
+buttons.forEach(button => {
+    button.addEventListener('click', startGame)
+});
 
 
-result.textContent = "0-0";
-container.appendChild(result);
