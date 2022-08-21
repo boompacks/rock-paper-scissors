@@ -1,3 +1,9 @@
+const buttons = document.querySelectorAll("button");
+for(button of buttons){
+    button.addEventListener('click', startGame);
+}
+
+
 function getComputerSelection(){
     let choises = ["rock", "paper", "scissors"];
     let randomNumber = Math.random()* 2;
@@ -6,8 +12,21 @@ function getComputerSelection(){
 
 
 function getPlayerSelection(){
-    let playerChoice = prompt("Make your choice:");
-    return playerChoice.toLowerCase()
+    const rock = document.querySelector('#rock');
+    const paper = document.querySelector('#paper');
+    const scissors = document.querySelector('#scissors');
+
+    paper.addEventListener('click', () =>{
+        return 'paper'
+    });
+
+    rock.addEventListener('click', () =>{
+        return 'rock'
+    });
+
+    scissors.addEventListener('click', () =>{
+        return 'scissors'
+    });
 }
 
 
@@ -41,11 +60,7 @@ function playRound(playerSelection, computerSelection){
 }
 
 
-function game(){
-    for (let i=0; i<5; i++){
-        let result = playRound(getPlayerSelection(), getComputerSelection());
-        console.log(result)
-    }
+function startGame(){
+    let result = playRound(getPlayerSelection(), getComputerSelection());
+    console.log(result)
 }
-
-game();
